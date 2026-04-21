@@ -1,5 +1,6 @@
 import gymnasium as gym
 import pygame
+from matplotlib import pyplot as plt
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.monitor import Monitor
 
@@ -31,3 +32,16 @@ def render_callback(model, env):
 
     env.close()
     pygame.quit()
+
+def plot_reward(rewards):
+    window = 50
+    smoothed = rewards.rolling(window).mean()
+
+    plt.figure()
+    plt.title("Rewards History (Smoothed)")
+    plt.plot(rewards, alpha=0.3, label="Raw")
+    plt.plot(smoothed, label=f"{window}-episode avg")
+    plt.legend()
+    plt.xlabel("Episode")
+    plt.ylabel("Reward")
+    plt.show()
