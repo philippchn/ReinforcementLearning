@@ -18,7 +18,6 @@ def render_callback(model, env):
         if not running:
             break
 
-        # Handle window close
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
