@@ -21,8 +21,8 @@ def make_env_atari(env_id, render_mode=None):
         return env
     return _init
 
-def render_callback_atari(model, env, n_stack=4):
-    env = DummyVecEnv([make_env_atari(env, render_mode="human")])
+def render_callback_atari(model, env_id, n_stack=4):
+    env = DummyVecEnv([make_env_atari(env_id, render_mode="human")])
     env = VecFrameStack(env, n_stack)
     obs = env.reset()
 
